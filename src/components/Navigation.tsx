@@ -29,20 +29,35 @@ const navItems = [
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      const headerHeight = 20; // Approximate header height
-      const iconOffset = window.innerWidth >= 768 ? 38 : 25; // Extra space to show background icon (250px icon / 2 + padding)
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementPosition - headerHeight - iconOffset;
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
+  const scrollToSection = (href: string, menuWasOpen: boolean = false) => {
+    // Close mobile menu if it was open
+    if (menuWasOpen) {
+      setIsOpen(false);
     }
-    setIsOpen(false);
+    
+    // Wait a brief moment for the menu to close before scrolling (especially important on mobile)
+    const delay = menuWasOpen ? 200 : 50; // Longer delay if menu was open
+    
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        const isMobile = window.innerWidth < 768;
+        const headerHeight = isMobile ? 70 : 20; // Account for fixed header on mobile
+        const iconOffset = isMobile ? 25 : 38; // Extra space to show background icon
+        
+        // Get current scroll position
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Get element position relative to document
+        const elementTop = element.getBoundingClientRect().top + currentScroll;
+        const offsetPosition = elementTop - headerHeight - iconOffset;
+        
+        window.scrollTo({
+          top: Math.max(0, offsetPosition), // Ensure we don't scroll to negative values
+          behavior: "smooth"
+        });
+      }
+    }, delay);
   };
 
   return (
@@ -99,19 +114,37 @@ export const Navigation = () => {
             <Button 
               variant="hero" 
               size="sm"
-              onClick={() => scrollToSection("#contacto")}
+              onClick={() => scrollToSection("#contacto", false)}
             >
               Conecta
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-foreground hover:text-primary transition-colors"
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          {/* Mobile Social Icons & Menu Button */}
+          <div className="md:hidden flex items-center gap-4">
+            <a 
+              href="https://www.instagram.com/cintia.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-white hover:text-primary transition-colors"
+            >
+              <Instagram className="w-5 h-5" />
+            </a>
+            <a 
+              href="https://www.linkedin.com/company/cintiaapp" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-white hover:text-primary transition-colors"
+            >
+              <LinkedinSolid className="w-5 h-5" />
+            </a>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
@@ -127,36 +160,18 @@ export const Navigation = () => {
                 {navItems.map((item) => (
                   <button
                     key={item.label}
-                    onClick={() => scrollToSection(item.href)}
+                    onClick={() => scrollToSection(item.href, true)}
                     className="block w-full text-left text-foreground hover:text-primary transition-colors py-2"
                   >
                     {item.label}
                   </button>
                 ))}
-                <div className="pt-4 space-y-3">
-                  <div className="flex justify-center gap-6 pb-3">
-                    <a 
-                      href="https://www.instagram.com/cintia.app/" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-white hover:text-primary transition-colors"
-                    >
-                      <Instagram className="w-6 h-6" />
-                    </a>
-                    <a 
-                      href="https://www.linkedin.com/company/cintiaapp" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-white hover:text-primary transition-colors"
-                    >
-                      <LinkedinSolid className="w-6 h-6" />
-                    </a>
-                  </div>
+                <div className="pt-4">
                   <Button 
                     variant="hero" 
                     size="sm" 
                     className="w-full"
-                    onClick={() => scrollToSection("#contacto")}
+                    onClick={() => scrollToSection("#contacto", true)}
                   >
                     Conecta
                   </Button>

@@ -11,7 +11,7 @@ const faqs = [
   {
     question: "¿Qué es exactamente CINTIA?",
     answer:
-      "CINTIA es una compañera cultural digital que utiliza inteligencia artificial para personalizar las visitas a museos y espacios culturales. Adapta la información, el tono y el ritmo a cada visitante, haciendo que el arte sea más comprensible y atractivo.",
+      "CINTIA es una compañera cultural digital que personaliza las visitas a museos y espacios culturales para ofrecer experiencias emocionalmente memorables. Adapta la información, el tono y el ritmo a cada visitante, haciendo que la cultura se vuelva más comprensible, accesible y atractiva.",
   },
   {
     question: "¿En qué museos puedo probarla?",
@@ -32,13 +32,13 @@ const faqs = [
 
 export const FAQ = () => {
   return (
-    <section className="py-24 px-6">
+    <section className="py-16 md:py-24 px-4 md:px-6">
       <div className="container mx-auto max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16 relative"
+          className="text-center mb-12 md:mb-16 relative"
         >
           {/* Background icon */}
           <div className="absolute inset-0 flex items-center justify-center -z-10">
@@ -49,8 +49,8 @@ export const FAQ = () => {
             />
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 relative z-10">Preguntas frecuentes</h2>
-          <p className="text-lg text-primary relative z-10">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 relative z-10 px-2">Preguntas frecuentes</h2>
+          <p className="text-base md:text-lg text-primary relative z-10 px-2">
             Lo esencial sobre CINTIA, de forma clara y sencilla
           </p>
         </motion.div>
@@ -65,12 +65,12 @@ export const FAQ = () => {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="bg-primary/20 rounded-2xl px-6 border border-primary/10 shadow-card"
+                className="bg-primary/20 rounded-2xl px-4 md:px-6 border border-primary/10 shadow-card"
               >
-                <AccordionTrigger className="text-left text-lg font-semibold text-white hover:text-primary hover:no-underline py-6">
+                <AccordionTrigger className="text-left text-base md:text-lg font-semibold text-white hover:text-primary hover:no-underline py-4 md:py-6 px-2">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-white pb-6">
+                <AccordionContent className="text-sm md:text-base text-white pb-4 md:pb-6 px-2 leading-relaxed">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

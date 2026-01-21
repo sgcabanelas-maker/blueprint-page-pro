@@ -14,11 +14,11 @@ export const Footer = () => {
 
   return (
     <>
-      <footer className="bg-background/80 backdrop-blur-lg border-t border-primary/10 py-6 px-6">
+      <footer className="bg-background/80 backdrop-blur-lg border-t border-primary/10 py-6 px-4 md:px-6">
         <div className="max-w-[1400px] mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             {/* Copyright - Left */}
-            <div className="text-sm text-muted-foreground md:flex-1 order-2 md:order-1">
+            <div className="text-xs md:text-sm text-muted-foreground md:flex-1 order-2 md:order-1 text-center md:text-left px-2">
               © 2025 Cintia. Todos los derechos reservados.
             </div>
             
@@ -37,7 +37,7 @@ export const Footer = () => {
             </div>
             
             {/* Legal links - Right */}
-            <div className="flex items-center gap-3 text-sm md:flex-1 justify-end order-3">
+            <div className="flex items-center gap-3 text-xs md:text-sm md:flex-1 justify-center md:justify-end order-3 px-2">
               <button 
                 onClick={() => setIsLegalOpen(true)}
                 className="text-muted-foreground hover:text-primary transition-colors"

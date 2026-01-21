@@ -28,8 +28,8 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center py-24 px-6">
-      <div className="container mx-auto w-full">
+    <section className="relative min-h-screen flex items-center justify-center py-20 px-4 md:py-24 md:px-6">
+      <div className="container mx-auto w-full max-w-7xl">
         {/* Container with rounded corners for the main visual */}
         <div className="relative w-full rounded-3xl overflow-hidden">
           {/* Background image without gradient overlay */}
@@ -41,23 +41,23 @@ export const Hero = () => {
           />
 
           {/* Content overlay */}
-          <div className="relative z-10 min-h-[600px] flex flex-col items-center justify-center text-center px-6 py-16 md:py-24">
+          <div className="relative z-10 min-h-[500px] md:min-h-[600px] flex flex-col items-center justify-center text-center px-4 py-12 md:px-6 md:py-24">
             {/* Main content - centered */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="max-w-4xl mx-auto"
+              className="max-w-4xl mx-auto w-full"
             >
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white">
-                Cultura <span className="font-handwriting text-primary">a medida</span>
+              <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 text-white px-2">
+                <span className="block md:inline">Cultura</span>{" "}
+                <span className="font-handwriting text-primary block md:inline">a medida</span>
               </h1>
-              <p className="text-xl md:text-2xl mb-8 text-white max-w-2xl mx-auto">
-                Una nueva forma de vivir los museos y espacios culturales,
-                personalizada según tus intereses, ritmo y estilo de aprendizaje.
+              <p className="text-base md:text-xl lg:text-2xl mb-6 md:mb-8 text-white max-w-2xl mx-auto px-2 leading-relaxed">
+                Una nueva forma de vivir la cultura
               </p>
-              <div className="flex justify-center">
-                <Button variant="hero" size="lg" className="text-lg" onClick={scrollToCintia}>
+              <div className="flex justify-center px-2">
+                <Button variant="hero" size="lg" className="text-base md:text-lg" onClick={scrollToCintia}>
                   Descubre CINTIA
                 </Button>
               </div>

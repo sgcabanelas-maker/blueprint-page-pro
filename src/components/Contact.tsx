@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 import { Mail, Phone } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -65,13 +66,13 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contacto" className="py-24 px-6">
+    <section id="contacto" className="py-16 md:py-24 px-4 md:px-6">
       <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16 relative"
+          className="text-center mb-12 md:mb-16 relative"
         >
           {/* Background icon */}
           <div className="absolute inset-0 flex items-center justify-center -z-10">
@@ -82,41 +83,44 @@ export const Contact = () => {
             />
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 relative z-10">Forma parte del cambio</h2>
-          <p className="text-lg text-primary max-w-3xl mx-auto relative z-10">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 relative z-10 px-2">Forma parte del cambio</h2>
+          <p className="text-base md:text-lg text-primary max-w-3xl mx-auto relative z-10 px-2">
             Juntos podemos transformar la educación cultural
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
+              <div className="space-y-2">
+                <Label htmlFor="name" className="text-white">Nombre</Label>
                 <Input
-                  placeholder="Nombre"
+                  id="name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
                   className="bg-transparent border-primary focus:border-primary text-white placeholder:text-white/60"
                 />
               </div>
-              <div>
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-white">Email</Label>
                 <Input
+                  id="email"
                   type="email"
-                  placeholder="Email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
                   className="bg-transparent border-primary focus:border-primary text-white placeholder:text-white/60"
                 />
               </div>
-              <div>
+              <div className="space-y-2">
+                <Label htmlFor="message" className="text-white">Mensaje</Label>
                 <Textarea
-                  placeholder="Mensaje"
+                  id="message"
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   required
@@ -136,34 +140,43 @@ export const Contact = () => {
             viewport={{ once: true }}
             className="space-y-8"
           >
-            <div className="bg-primary/20 rounded-3xl p-8 shadow-card hover:shadow-glow transition-all duration-300 border border-primary/10">
-              <div className="flex items-start gap-4">
+            <div className="bg-primary/20 rounded-3xl p-6 md:p-8 shadow-card hover:shadow-glow transition-all duration-300 border border-primary/10">
+              <div className="flex flex-col items-center md:flex-row md:items-start gap-4">
                 <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary/20 shrink-0">
                   <Mail className="w-6 h-6 text-primary" />
                 </div>
-                <div>
+                <div className="hidden md:block">
                   <h3 className="font-semibold mb-2 text-white">Email</h3>
                   <a
                     href="mailto:sergio.cabanelas@cintiaapp.com"
-                    className="text-primary hover:underline"
+                    className="text-white hover:underline"
                   >
                     sergio.cabanelas@cintiaapp.com
                   </a>
                 </div>
+                <a
+                  href="mailto:sergio.cabanelas@cintiaapp.com"
+                  className="md:hidden text-white hover:underline text-center"
+                >
+                  sergio.cabanelas@cintiaapp.com
+                </a>
               </div>
             </div>
 
-            <div className="bg-primary/20 rounded-3xl p-8 shadow-card hover:shadow-glow transition-all duration-300 border border-primary/10">
-              <div className="flex items-start gap-4">
+            <div className="bg-primary/20 rounded-3xl p-6 md:p-8 shadow-card hover:shadow-glow transition-all duration-300 border border-primary/10">
+              <div className="flex flex-col items-center md:flex-row md:items-start gap-4">
                 <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary/20 shrink-0">
                   <Phone className="w-6 h-6 text-primary" />
                 </div>
-                <div>
+                <div className="hidden md:block">
                   <h3 className="font-semibold mb-2 text-white">Teléfono</h3>
-                  <a href="tel:+34659369635" className="text-primary hover:underline">
+                  <a href="tel:+34659369635" className="text-white hover:underline">
                     (+34) 659 369 635
                   </a>
                 </div>
+                <a href="tel:+34659369635" className="md:hidden text-white hover:underline text-center">
+                  (+34) 659 369 635
+                </a>
               </div>
             </div>
           </motion.div>
